@@ -1,5 +1,5 @@
-import { Lock, Mail, User } from "lucide-react";
 import { useState } from "react";
+import { Mail, Lock, User, ArrowRight } from "lucide-react";
 
 const AuthPage = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -7,106 +7,115 @@ const AuthPage = () => {
   const toggleAuth = () => setIsLogin(!isLogin);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white p-8 rounded-lg shadow-md w-96">
-        <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
-          {isLogin ? "Welcome Back" : "Create Account"}
-        </h2>
+    <div className="flex min-h-screen w-full bg-gradient-to-br from-gray-900 to-gray-800">
+      <div className="m-auto w-full max-w-md overflow-hidden rounded-2xl bg-white shadow-xl">
+        <div className="p-8">
+          <div className="mb-8 text-center">
+            <h2 className="text-3xl font-bold text-gray-800">
+              {isLogin ? "Welcome Back" : "Create Account"}
+            </h2>
+            <p className="mt-2 text-sm text-gray-500">
+              {isLogin
+                ? "Sign in to access your account"
+                : "Register to create your account"}
+            </p>
+          </div>
 
-        <form className="space-y-4">
-          {!isLogin && (
-            <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <User className="h-5 w-5 text-gray-400" />
+          <div className="space-y-5">
+            {!isLogin && (
+              <div className="relative">
+                <User className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
+                <input
+                  type="text"
+                  placeholder="Full Name"
+                  className="w-full rounded-lg border border-gray-200 bg-gray-50 p-4 pl-12 text-sm outline-none transition focus:border-blue-500 focus:bg-white"
+                />
               </div>
+            )}
+
+            <div className="relative">
+              <Mail className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
               <input
-                type="text"
-                placeholder="Full Name"
-                className="pl-10 w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                type="email"
+                placeholder="Email Address"
+                className="w-full rounded-lg border border-gray-200 bg-gray-50 p-4 pl-12 text-sm outline-none transition focus:border-blue-500 focus:bg-white"
               />
             </div>
-          )}
 
-          <div className="relative">
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <Mail className="h-5 w-5 text-gray-400" />
-            </div>
-            <input
-              type="email"
-              placeholder="Email"
-              className="pl-10 w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-
-          <div className="relative">
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <Lock className="h-5 w-5 text-gray-400" />
-            </div>
-            <input
-              type="password"
-              placeholder="Password"
-              className="pl-10 w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-
-          {!isLogin && (
             <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <Lock className="h-5 w-5 text-gray-400" />
-              </div>
+              <Lock className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
               <input
                 type="password"
-                placeholder="Confirm Password"
-                className="pl-10 w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Password"
+                className="w-full rounded-lg border border-gray-200 bg-gray-50 p-4 pl-12 text-sm outline-none transition focus:border-blue-500 focus:bg-white"
               />
             </div>
-          )}
 
-          {isLogin ? (
-            <div className="flex items-center justify-between">
-              <label className="flex items-center">
+            {!isLogin && (
+              <div className="relative">
+                <Lock className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
+                <input
+                  type="password"
+                  placeholder="Confirm Password"
+                  className="w-full rounded-lg border border-gray-200 bg-gray-50 p-4 pl-12 text-sm outline-none transition focus:border-blue-500 focus:bg-white"
+                />
+              </div>
+            )}
+
+            {isLogin ? (
+              <div className="flex items-center justify-between">
+                <label className="flex items-center">
+                  <input
+                    type="checkbox"
+                    className="h-4 w-4 rounded border-gray-300 text-blue-600"
+                  />
+                  <span className="ml-2 text-sm text-gray-500">
+                    Remember me
+                  </span>
+                </label>
+                <a
+                  href="#"
+                  className="text-sm font-medium text-blue-600 hover:text-blue-800"
+                >
+                  Forgot password?
+                </a>
+              </div>
+            ) : (
+              <div className="flex items-center">
                 <input
                   type="checkbox"
-                  className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                  className="h-4 w-4 rounded border-gray-300 text-blue-600"
                 />
-                <span className="ml-2 text-sm text-gray-600">Remember me</span>
-              </label>
-              <a href="#" className="text-sm text-blue-600 hover:underline">
-                Forgot password?
-              </a>
-            </div>
-          ) : (
-            <div className="flex items-center">
-              <input
-                type="checkbox"
-                className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-              />
-              <span className="ml-2 text-sm text-gray-600">
-                I agree to the{" "}
-                <a href="#" className="text-blue-600 hover:underline">
-                  Terms and Conditions
-                </a>
-              </span>
-            </div>
-          )}
+                <span className="ml-2 text-sm text-gray-500">
+                  I agree to the{" "}
+                  <a
+                    href="#"
+                    className="font-medium text-blue-600 hover:text-blue-800"
+                  >
+                    Terms of Service
+                  </a>
+                </span>
+              </div>
+            )}
 
-          <button
-            type="submit"
-            className="w-full bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-          >
-            {isLogin ? "Sign In" : "Sign Up"}
-          </button>
-        </form>
+            <button className="group relative flex w-full items-center justify-center rounded-lg bg-blue-600 p-4 text-sm font-medium text-white transition hover:bg-blue-700">
+              {isLogin ? "Sign In" : "Create Account"}
+              <ArrowRight className="absolute right-4 h-5 w-5 opacity-0 transition group-hover:opacity-100" />
+            </button>
+          </div>
 
-        <p className="mt-4 text-center text-sm text-gray-600">
-          {isLogin ? "Don't have an account?" : "Already have an account?"}{" "}
-          <button
-            onClick={toggleAuth}
-            className="text-blue-600 hover:underline"
-          >
-            {isLogin ? "Sign up" : "Sign in"}
-          </button>
-        </p>
+          <div className="mt-8 border-t border-gray-200 pt-6 text-center">
+            <p className="text-sm text-gray-500">
+              {isLogin ? "Don't have an account?" : "Already have an account?"}{" "}
+              <button
+                onClick={toggleAuth}
+                className="font-medium text-blue-600 hover:text-blue-800"
+              >
+                {isLogin ? "Sign up" : "Sign in"}
+              </button>
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );
